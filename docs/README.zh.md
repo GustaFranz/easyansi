@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/easyansi/"><img src="https://img.shields.io/pypi/v/easyansi?label=PyPI&color=blue" alt="PyPI 版本"></a>
+  <a href="https://pypi.org/project/py-easyansi/"><img src="https://img.shields.io/pypi/v/py-easyansi?label=PyPI&color=blue" alt="PyPI 版本"></a>
   <a href="https://github.com/GustaFranz/easyansi/blob/main/LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-green" alt="MIT 许可证"></a>
   <img src="https://img.shields.io/badge/python-%3E%3D3.8-blue" alt="Python >= 3.8">
   <img src="https://img.shields.io/badge/依赖-零-brightgreen" alt="零依赖">
@@ -160,7 +160,7 @@ setup_logging()          # 完成 — logging.info() 现已彩色输出
 ## 安装
 
 ```bash
-pip install easyansi
+pip install py-easyansi
 ```
 
 从源码安装：

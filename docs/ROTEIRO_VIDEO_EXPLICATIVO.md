@@ -53,7 +53,7 @@
 
 - [ ] Terminal com fonte grande (18–22 pt)
 - [ ] Tema escuro com bom contraste
-- [ ] `pip install easyansi` ou `pip install -e .` já testado
+- [ ] `pip install py-easyansi` ou `pip install -e .` já testado
 - [ ] Windows: terminal Windows Terminal ou VS Code integrado
 - [ ] Arquivo `demo_video.py` com os exemplos prontos (copie da seção [Apêndice A](#apêndice-a-arquivo-demo_videopy-completo))
 - [ ] Link do GitHub visível no slide final
@@ -237,7 +237,7 @@ Instalar, importar, imprimir a primeira mensagem colorida.
 
 **Slide 1 — Instalação**
 ```bash
-pip install easyansi
+pip install py-easyansi
 ```
 
 **Slide 2 — Primeiro script**
@@ -255,7 +255,7 @@ easyansi.preview()
 
 ### Roteiro falado
 
-> “Instalação: `pip install easyansi`. Se estiver clonando do GitHub, use `pip install -e .` na pasta do projeto.”
+> “Instalação: `pip install py-easyansi`. Se estiver clonando do GitHub, use `pip install -e .` na pasta do projeto.”
 >
 > “O caminho mais direto é importar `eprint` — um `print` que entende a marcação EasyAnsi.”
 >
@@ -285,7 +285,7 @@ easyansi.preview()
 ### O que acrescentar
 
 - Zoom no terminal quando a cor aparecer.
-- Legenda na tela: `pip install easyansi`
+- Legenda na tela: `pip install py-easyansi`
 
 ### Transição
 
@@ -780,7 +780,7 @@ CTA claro: GitHub, instalar, contribuir, star.
 
 **Slide 2 — Links**
 - GitHub: https://github.com/GustaFranz/easyansi
-- `pip install easyansi`
+- `pip install py-easyansi`
 - README em PT, EN, ES, ZH
 
 **Slide 3 — CTA**
@@ -792,7 +792,7 @@ CTA claro: GitHub, instalar, contribuir, star.
 
 > “Recapitulando: EasyAnsi colore o terminal com sintaxe **simples**, funciona com `print` nativo via `activate()`, tem atalhos prontos, input com scopes e títulos decorativos na **0.4**.”
 >
-> “O código está no GitHub — link na descrição. Instale com `pip install easyansi`, leia o README, rode `preview()` no seu terminal.”
+> “O código está no GitHub — link na descrição. Instale com `pip install py-easyansi`, leia o README, rode `preview()` no seu terminal.”
 >
 > “Se isso te ajudou a aprender ou a ensinar, deixa uma **estrela** no repositório e me conta o que você construiu com a biblioteca.”
 >
@@ -929,7 +929,7 @@ Liste 3 ideias de B-roll ou animação simples para a PARTE [N] (terminal, setas
 ```
 Aprenda a usar a biblioteca EasyAnsi (v0.4.0) para colorir print e input no terminal Python.
 
-📦 pip install easyansi
+📦 pip install py-easyansi
 🔗 https://github.com/GustaFranz/easyansi
 
 Neste vídeo:

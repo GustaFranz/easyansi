@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "easyansi"
+name = "py-easyansi"
 version = "0.5.0"
 description = "Terminal string formatting with simple //color/ syntax. Zero dependencies."
 readme = "README.md"

@@ -7,6 +7,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 
+- PyPI distribution name set to `py-easyansi` (import remains `easyansi`)
 - Renamed public API identifiers to English: `titulo` → `title`, `perguntar` → `ask`
 - Renamed parameters to English: `escopo` → `scope`, `largura` → `width`, `alinhar` → `align`, etc.
 - Updated documentation in EN, PT, ES, and ZH to match the new API
