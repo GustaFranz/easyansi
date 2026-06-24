@@ -164,22 +164,28 @@ pip install -e ".[dev]"
 
 ## Comece em 1 minuto
 
+**Recomendado — use `print` e `input` normais:**
+
+```python
+import easyansi
+
+easyansi.activate()   # uma linha no inicio do script
+
+print("//green/Tudo certo!/green")
+print(f"Estoque: //red/{3}/red unidades restantes")
+nome = input("Digite //cyan/seu nome/cyan: ")
+```
+
+Sem renomear funcoes. Use `easyansi.deactivate()` para restaurar os originais.
+
+**Alternativa — `eprint` / `einput` explicitos:**
+
 ```python
 from easyansi import eprint, einput, fmt
 
-# Colorir a linha inteira
 eprint("//green/Tudo certo!/green")
-
-# Colorir só um pedaço
 eprint("Estoque: //red/3/red unidades restantes")
-
-# Combinar estilo + cor
-eprint("//bold-blue/Título importante/bold-blue")
-
-# Prompt colorido no input
 nome = einput("Digite //cyan/seu nome/cyan: ")
-
-# Obter string formatada sem imprimir
 mensagem = fmt("//yellow/aviso/yellow")
 ```
 
@@ -236,6 +242,9 @@ eprint("//erro/texto/erro")                    # tratado como texto puro
 
 | Função | Descrição |
 | --- | --- |
+| `activate()` | Faz `print` e `input` globais interpretarem a marcação EasyAnsi |
+| `deactivate()` | Restaura `print` e `input` originais |
+| `is_active()` | Indica se `activate()` está ativo |
 | `fmt(texto, *, color=None)` | Retorna string formatada (ANSI ou limpa) |
 | `eprint(*values, sep=" ", end="\n", file=None, color=None, flush=False)` | `print` colorido |
 | `einput(prompt="", *, color=None)` | `input` colorido |

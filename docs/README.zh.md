@@ -164,22 +164,28 @@ pip install -e ".[dev]"
 
 ## 快速开始
 
+**推荐 — 使用普通的 `print` 和 `input`：**
+
+```python
+import easyansi
+
+easyansi.activate()   # 在脚本开头加一行
+
+print("//green/一切正常!/green")
+print(f"库存: //red/{3}/red 件剩余")
+name = input("请输入 //cyan/你的名字/cyan: ")
+```
+
+无需重命名函数。调用 `easyansi.deactivate()` 可恢复原始函数。
+
+**备选 — 显式使用 `eprint` / `einput`：**
+
 ```python
 from easyansi import eprint, einput, fmt
 
-# 整行着色
 eprint("//green/一切正常!/green")
-
-# 仅部分着色
 eprint("库存: //red/3/red 件剩余")
-
-# 样式 + 颜色
-eprint("//bold-blue/重要标题/bold-blue")
-
-# 彩色输入提示
 name = einput("请输入 //cyan/你的名字/cyan: ")
-
-# 获取格式化字符串（不打印）
 message = fmt("//yellow/警告/yellow")
 ```
 
@@ -234,6 +240,9 @@ eprint("//typo/文本/typo")                 # 视为纯文本
 
 | 函数 | 说明 |
 | --- | --- |
+| `activate()` | 使全局 `print` 和 `input` 解析 EasyAnsi 标记 |
+| `deactivate()` | 恢复原始的 `print` 和 `input` |
+| `is_active()` | 返回 `activate()` 是否已生效 |
 | `fmt(text, *, color=None)` | 返回格式化字符串（ANSI 或纯文本） |
 | `eprint(*values, ...)` | 彩色 `print` |
 | `einput(prompt="", *, color=None)` | 彩色 `input` |
