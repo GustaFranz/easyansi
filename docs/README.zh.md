@@ -93,6 +93,8 @@ eprint(f"得分: //bold-blue/{score}/bold-blue")
 
 # 单词快捷方式
 print(red("错误"), green("成功"), bold("标题"))
+print(bold(red("严重")))                          # 链式调用
+print("//bg-yellow/黄色背景警告/bg-yellow")       # 配合 activate()
 
 # 状态行（开箱即用）
 success("已保存")
@@ -203,24 +205,26 @@ message = fmt("//yellow/警告/yellow")
 
 ### 组合样式与颜色
 
+（以下示例假设已调用 `easyansi.activate()`）
+
 ```python
-eprint("//bold-blue/标题/bold-blue")
-eprint("//italic-underline-magenta/高亮/italic-underline-magenta")
-eprint("//bg-yellow/黄底黑字/bg-yellow")
-eprint("//#ff8800/精确橙色/#ff8800")
+print("//bold-blue/标题/bold-blue")
+print("//italic-underline-magenta/高亮/italic-underline-magenta")
+print("//bg-yellow/黄底黑字/bg-yellow")
+print("//#ff8800/精确橙色/#ff8800")
 ```
 
 ### 在 f-string 中使用
 
 ```python
 value = 42
-eprint(f"结果: //green/{value}/green 分")
+print(f"结果: //green/{value}/green 分")
 ```
 
 ### 转义字面斜杠
 
 ```python
-eprint(r"路径: \/usr\/local/bin")
+print(r"路径: \/usr\/local/bin")
 ```
 
 ### 安全容错设计
@@ -228,8 +232,36 @@ eprint(r"路径: \/usr\/local/bin")
 仅**已知**的样式/颜色名称会被解析：
 
 ```python
-eprint("访问 https://example.com/page")   # URL 不受影响
-eprint("//typo/文本/typo")                 # 视为纯文本
+print("访问 https://example.com/page")   # URL 不受影响
+print("//typo/文本/typo")                 # 视为纯文本
+```
+
+---
+
+## 个性化示例
+
+日常用法，复制即可（配合 `activate()`）：
+
+```python
+import easyansi
+easyansi.activate()
+
+# 整行着色
+print("//green/保存成功/green")
+
+# 仅一个词
+score = 10
+print(f"得分: //bold-blue/{score}/bold-blue 分")
+
+# 样式 + 颜色组合
+print("//italic-underline-magenta/重要提示/italic-underline-magenta")
+
+# 背景色与 hex
+print("//bg-yellow/黑字黄底/bg-yellow")
+print("//#ff8800/自定义橙色/#ff8800")
+
+# 葡萄牙语别名同样可用
+print("//negrito-vermelho/错误/negrito-vermelho")
 ```
 
 ---
@@ -254,16 +286,28 @@ eprint("//typo/文本/typo")                 # 视为纯文本
 
 `black` · `red` · `green` · `yellow` · `blue` · `magenta` · `cyan` · `white`
 
+```python
+from easyansi import red, green, yellow, blue, magenta, cyan, white, black
+
+print(red("错误"), green("成功"), yellow("警告"))
+print(blue("信息"), magenta("高亮"), cyan("提示"), white("文本"))
+print(black("深色文字"))
+```
+
 ### 样式快捷函数
 
 `bold` · `dim` · `italic` · `underline` · `strike` · `style(name, text)`
 
-可链式调用：
-
 ```python
-from easyansi import bold, red
-print(bold(red("严重")))
+from easyansi import bold, dim, italic, underline, strike, style, red
+
+print(bold("标题"), dim("次要"), italic("备注"))
+print(underline("链接"), strike("已删除"))
+print(bold(red("严重")))                    # 链式调用
+print(style("bold-blue", "自定义组合"))    # 通过 style() 使用任意名称
 ```
+
+所有快捷函数均支持 `color=None|True|False`。
 
 ### 状态消息
 
@@ -317,6 +361,23 @@ setup_logging(markup=True, force=True)
 logging.info("//green/部署完成/green")
 ```
 
+**自定义级别颜色（可选）：**
+
+```python
+import logging
+from easyansi.logging import ColorFormatter, setup_logging
+
+handler = logging.StreamHandler()
+handler.setFormatter(ColorFormatter(level_colors={
+    logging.DEBUG: "dim",
+    logging.INFO: "green",
+    logging.WARNING: "yellow",
+    logging.ERROR: "bold-red",
+    logging.CRITICAL: "bold-red",
+}))
+logging.root.addHandler(handler)
+```
+
 ---
 
 ## 样式与颜色参考
@@ -331,6 +392,11 @@ logging.info("//green/部署完成/green")
 | Underline | Sublinhado | `underline` / `sublinhado` |
 | Strikethrough | Tachado | `strike` / `tachado` |
 
+```python
+print("//bold/粗体/bold  //dim/暗淡/dim  //italic/斜体/italic")
+print("//underline/下划线/underline  //strike/删除线/strike")
+```
+
 ### 命名颜色
 
 | 英语 | 葡萄牙语 | 标签 |
@@ -344,11 +410,32 @@ logging.info("//green/部署完成/green")
 | Cyan | Ciano | `cyan` / `ciano` |
 | White | Branco | `white` / `branco` |
 
+```python
+print("//red/红  //green/绿  //yellow/黄  //blue/蓝")
+print("//magenta/品红  //cyan/青  //white/白  //black/黑")
+```
+
 ### 变体
 
 - **亮色：** `bright-red`、`claro-vermelho`
 - **背景：** `bg-blue`、`fundo-azul`
 - **真彩色：** `#ff8800`、`bg-#222222`
+
+```python
+print("//bright-red/亮色/bright-red")
+print("//bg-blue/蓝色背景/bg-blue")
+print("//bg-#222222/深色面板/bg-#222222")
+print("//#ff8800/精确 hex 颜色/#ff8800")
+```
+
+### 葡萄牙语别名
+
+英语标签与葡萄牙语别名可互换使用：
+
+```python
+print("//negrito-vermelho/错误/negrito-vermelho")
+print("//fundo-amarelo/黄色背景警告/fundo-amarelo")
+```
 
 ### 在终端中发现全部颜色
 
@@ -373,8 +460,10 @@ easyansi.preview()
 手动控制：
 
 ```python
+from easyansi import fmt
+
 fmt("//red/错误/red", color=True)   # 始终着色
-fmt("//red/错误/red", color=False)  # 始终纯文本
+fmt("//red/错误/red", color=False)  # 始终纯文本 — 适合文件/导出
 ```
 
 ---
