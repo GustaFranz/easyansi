@@ -389,7 +389,7 @@ logging.root.addHandler(handler)
 | Inglés | Portugués | Etiqueta | Vista previa |
 | --- | --- | --- | --- |
 | Bold | Negrito | `bold` / `negrito` | <b>ejemplo</b> |
-| Dim | Fraco | `dim` / `fraco` | <span style="color:#888">ejemplo</span> |
+| Dim | Fraco | `dim` / `fraco` | ![dim](https://placehold.co/15x15/888888/888888.png) ejemplo |
 | Italic | Itálico | `italic` / `italico` | <i>ejemplo</i> |
 | Underline | Sublinhado | `underline` / `sublinhado` | <u>ejemplo</u> |
 | Strikethrough | Tachado | `strike` / `tachado` | <s>ejemplo</s> |
@@ -403,14 +403,14 @@ print("//underline/Subrayado/underline  //strike/Tachado/strike")
 
 | Inglés | Portugués | Etiqueta | Vista previa |
 | --- | --- | --- | --- |
-| Black | Preto | `black` / `preto` | <span style="background:#1e1e1e;color:#fff;padding:0 6px">████</span> |
-| Red | Vermelho | `red` / `vermelho` | <span style="color:#cd3131">████ rojo</span> |
-| Green | Verde | `green` / `verde` | <span style="color:#13a10e">████ verde</span> |
-| Yellow | Amarelo | `yellow` / `amarelo` | <span style="color:#c19c00">████ amarillo</span> |
-| Blue | Azul | `blue` / `azul` | <span style="color:#0451a5">████ azul</span> |
-| Magenta | Rosa | `magenta` / `rosa` | <span style="color:#bc3fbc">████ magenta</span> |
-| Cyan | Ciano | `cyan` / `ciano` | <span style="color:#059fc0">████ cian</span> |
-| White | Branco | `white` / `branco` | <span style="background:#e8e8e8;color:#333;padding:0 6px;border:1px solid #ccc">████</span> |
+| Black | Preto | `black` / `preto` | ![negro](https://placehold.co/15x15/1e1e1e/1e1e1e.png) negro |
+| Red | Vermelho | `red` / `vermelho` | ![rojo](https://placehold.co/15x15/cd3131/cd3131.png) rojo |
+| Green | Verde | `green` / `verde` | ![verde](https://placehold.co/15x15/13a10e/13a10e.png) verde |
+| Yellow | Amarelo | `yellow` / `amarelo` | ![amarillo](https://placehold.co/15x15/c19c00/c19c00.png) amarillo |
+| Blue | Azul | `blue` / `azul` | ![azul](https://placehold.co/15x15/0451a5/0451a5.png) azul |
+| Magenta | Rosa | `magenta` / `rosa` | ![magenta](https://placehold.co/15x15/bc3fbc/bc3fbc.png) magenta |
+| Cyan | Ciano | `cyan` / `ciano` | ![cian](https://placehold.co/15x15/059fc0/059fc0.png) cian |
+| White | Branco | `white` / `branco` | ![blanco](https://placehold.co/15x15/e8e8e8/e8e8e8.png) blanco |
 
 ```python
 print("//red/rojo  //green/verde  //yellow/amarillo  //blue/azul")
@@ -421,9 +421,9 @@ print("//magenta/magenta  //cyan/cian  //white/blanco  //black/negro")
 
 | Variante | Etiqueta | Vista previa |
 | --- | --- | --- |
-| Brillante | `bright-red`, `claro-vermelho` | <span style="color:#ff5555">████ brillante</span> |
-| Fondo | `bg-blue`, `fundo-azul` | <span style="background:#0451a5;color:#fff;padding:0 6px"> fondo azul </span> |
-| Color real (hex) | `#ff8800`, `bg-#222222` | <span style="color:#ff8800">████</span> <span style="background:#222;color:#fff;padding:0 6px"> fondo </span> |
+| Brillante | `bright-red`, `claro-vermelho` | ![brillante](https://placehold.co/15x15/ff5555/ff5555.png) brillante |
+| Fondo | `bg-blue`, `fundo-azul` | ![fondo](https://placehold.co/15x15/0451a5/0451a5.png) fondo azul |
+| Color real (hex) | `#ff8800`, `bg-#222222` | ![hex](https://placehold.co/15x15/ff8800/ff8800.png) `#ff8800` ![fondo](https://placehold.co/15x15/222222/222222.png) `bg-#222222` |
 
 ```python
 print("//bright-red/brillante/bright-red")
