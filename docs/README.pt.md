@@ -1,0 +1,445 @@
+<p align="center">
+  <a href="../README.md"><img src="https://img.shields.io/badge/lang-English-blue?style=for-the-badge" alt="English"></a>
+  <a href="README.pt.md"><img src="https://img.shields.io/badge/lang-Português-green?style=for-the-badge" alt="Português"></a>
+  <a href="README.es.md"><img src="https://img.shields.io/badge/lang-Español-orange?style=for-the-badge" alt="Español"></a>
+  <a href="README.zh.md"><img src="https://img.shields.io/badge/lang-中文-red?style=for-the-badge" alt="中文"></a>
+</p>
+
+<h1 align="center">EasyAnsi</h1>
+
+<p align="center">
+  <strong>A forma fácil e prática de colorir texto no terminal.</strong><br>
+  Comandos simples. Zero configuração. Escreva cor dentro da string como numa f-string.<br>
+  Zero dependências · Fail-safe · Feita para iniciantes e scripts do dia a dia.
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/easyansi/"><img src="https://img.shields.io/pypi/v/easyansi?label=PyPI&color=blue" alt="Versão PyPI"></a>
+  <a href="../LICENSE"><img src="https://img.shields.io/badge/licença-MIT-green" alt="Licença MIT"></a>
+  <img src="https://img.shields.io/badge/python-%3E%3D3.8-blue" alt="Python >= 3.8">
+  <img src="https://img.shields.io/badge/dependências-zero-brightgreen" alt="Zero dependências">
+  <img src="https://img.shields.io/badge/typing-typed-informational" alt="Typed">
+</p>
+
+---
+
+## Visão geral
+
+A **EasyAnsi** é uma biblioteca Python leve que transforma strings comuns em saída colorida no terminal usando uma sintaxe intuitiva inspirada em f-strings — não na sintaxe de colchetes do Rich.
+
+Escreva cor diretamente dentro das suas strings:
+
+```python
+from easyansi import eprint
+
+quantidade = 12
+eprint(f"//bold-blue/Hoje todos os {quantidade} doces foram vendidos/bold-blue")
+eprint(f"Sobrou //red/{quantidade}/red item no estoque")
+```
+
+Sem configuração. Sem objeto console pesado. Sem crash se uma tag estiver errada — nomes desconhecidos permanecem como texto puro.
+
+---
+
+## Por trás do projeto
+
+Estou **aprendendo Python**. Ao estudar, percebi que colorir textos no terminal poderia ser muito mais simples do que encontrei nas bibliotecas existentes — e isso atrapalhava meu próprio aprendizado.
+
+Sou **professor do Ensino Fundamental há 14 anos**. Na sala de aula, aprendi a enxergar o que facilita ou dificulta a prática do dia a dia: instruções claras, comandos fáceis de lembrar e ferramentas que não punem o erro. Foi com esse olhar que idealizei a EasyAnsi — não como especialista em programação, mas como alguém que se importa com **aprendizado, ensino e praticidade**.
+
+**Transparência:** o código desta biblioteca foi elaborado com apoio de **inteligência artificial**. Prefiro dizer isso abertamente do que parecer que domino tudo o que está aqui. Ainda estou construindo minha capacidade técnica em Python — e esta biblioteca faz parte desse processo.
+
+O que eu trago de fato é a experiência de quem ensina todos os dias: perceber barreiras desnecessárias, simplificar o caminho e pensar em quem está começando. A EasyAnsi nasce dessa combinação — a curiosidade de quem estuda, a sensibilidade de quem ensina e a honestidade sobre como foi construída.
+
+### O que 14 anos de sala de aula me ensinaram sobre código
+
+| Na sala de aula | Na EasyAnsi |
+| --- | --- |
+| Erro não pode paralisar o aprendizado | Tags desconhecidas viram texto normal — nunca quebram o programa |
+| Instrução curta e objetiva | Sintaxe `//cor/` fácil de lembrar, como uma f-string |
+| Ver antes de decorar | `preview()` mostra todas as cores no terminal |
+| Ferramentas prontas para o dia a dia | `success()`, `error()`, `setup_logging()` — um comando e pronto |
+
+Não sou impostor por usar IA: sou alguém em aprendizado que soube **identificar uma necessidade real** e buscar a forma honesta de torná-la real — com a mesma preocupação que tenho quando preparo uma aula para facilitar a vida dos meus alunos.
+
+---
+
+## Objetivo: ser mais fácil e prático
+
+A EasyAnsi existe por um motivo: **tornar cores no terminal acessíveis para todos**, não só para especialistas.
+
+| O que você precisa | EasyAnsi | Bibliotecas mais pesadas |
+| --- | --- | --- |
+| Começar em 30 segundos | `from easyansi import eprint` | Configurar Console, aprender regras de markup |
+| Colorir uma palavra | `//red/{valor}/red` na f-string | Envolver objetos, montar segmentos Text |
+| Dizer "sucesso" | `success("Pronto")` | Criar renderizáveis customizados |
+| Ativar log colorido | `setup_logging()` — uma linha | Handlers, temas, plugins |
+| Tag escrita errada | Vira texto normal (sem crash) | Pode gerar erro de markup |
+
+**Filosofia:** menos conceitos, menos imports, comandos fáceis que você lembra e reutiliza todo dia.
+
+---
+
+## Comandos práticos (cola rápida)
+
+Copie e use — sem configuração extra:
+
+```python
+from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold
+
+# Imprimir com cor (o mais comum)
+eprint("//green/Olá!/green")
+eprint(f"Pontuação: //bold-blue/{pontos}/bold-blue")
+
+# Atalhos de uma palavra
+print(red("erro"), green("ok"), bold("título"))
+
+# Linhas de status (prontas)
+success("Salvo")
+error("Falhou")
+warning("Conexão lenta")
+info("Porta 8080")
+
+# Input com prompt colorido
+nome = einput("//cyan/Nome/cyan: ")
+
+# Só a string (sem imprimir)
+texto = fmt("//yellow/aviso/yellow")
+
+# Ver todas as cores no terminal
+import easyansi; easyansi.preview()
+```
+
+**Logging em uma linha:**
+
+```python
+from easyansi.logging import setup_logging
+setup_logging()          # pronto — logging.info() já sai colorido
+```
+
+---
+
+## Recursos
+
+| Recurso | Descrição |
+| --- | --- |
+| **Sintaxe simples** | `//cor/texto/cor` — abre com `//nome/`, fecha com `/nome` ou `//` |
+| **Colorir parcialmente** | Colore uma palavra dentro da f-string sem envolver a linha inteira |
+| **Estilos + cores** | Combine com `-`: `bold-blue`, `italic-underline-red` |
+| **Cores reais** | Suporte a hex: `//#ff8800/laranja/#ff8800` |
+| **Fundos** | `bg-blue`, `bg-#222222` |
+| **Nomes bilíngues** | Inglês + apelidos em português (`negrito`, `vermelho`, …) |
+| **Atalhos diretos** | `red()`, `bold()`, `green()` — ótimo para autocomplete no editor |
+| **Mensagens de status** | `success()`, `error()`, `warning()`, `info()` |
+| **Logging colorido** | `ColorFormatter` plug-and-play para o módulo `logging` |
+| **Parser fail-safe** | URLs como `https://` e tags desconhecidas nunca quebram a saída |
+| **Saída inteligente** | Texto limpo automaticamente em pipe, redirecionamento ou `NO_COLOR` |
+| **Windows pronto** | VT/ANSI habilitado automaticamente no import |
+| **Zero deps** | Apenas stdlib — instala em qualquer lugar |
+
+---
+
+## Requisitos
+
+- Python **3.8+**
+- Terminal com suporte a códigos ANSI (habilitado automaticamente no Windows 10+)
+
+---
+
+## Instalação
+
+```bash
+pip install easyansi
+```
+
+A partir do código-fonte:
+
+```bash
+git clone https://github.com/seu-usuario/easyansi.git
+cd easyansi
+pip install -e ".[dev]"
+```
+
+---
+
+## Comece em 1 minuto
+
+```python
+from easyansi import eprint, einput, fmt
+
+# Colorir a linha inteira
+eprint("//green/Tudo certo!/green")
+
+# Colorir só um pedaço
+eprint("Estoque: //red/3/red unidades restantes")
+
+# Combinar estilo + cor
+eprint("//bold-blue/Título importante/bold-blue")
+
+# Prompt colorido no input
+nome = einput("Digite //cyan/seu nome/cyan: ")
+
+# Obter string formatada sem imprimir
+mensagem = fmt("//yellow/aviso/yellow")
+```
+
+---
+
+## Guia de sintaxe
+
+### Abertura e fechamento
+
+| Padrão | Significado | Exemplo |
+| --- | --- | --- |
+| `//nome/` | Abre tag | `//red/` |
+| `/nome` | Fecha tag (explícito) | `/red` |
+| `//` | Fecha a última tag aberta | `//green/texto//` |
+
+### Combinar estilos e cores
+
+Use `-` para empilhar atributos:
+
+```python
+eprint("//bold-blue/cabeçalho/bold-blue")
+eprint("//italic-underline-magenta/destaque/italic-underline-magenta")
+eprint("//bg-yellow/texto preto em fundo amarelo/bg-yellow")
+eprint("//#ff8800/laranja exato/#ff8800")
+```
+
+### Funciona dentro de f-strings
+
+```python
+valor = 42
+eprint(f"Resultado: //green/{valor}/green pontos")
+```
+
+### Escapar barras literais
+
+```python
+eprint(r"caminho: \/usr\/local/bin")
+```
+
+### Fail-safe por design
+
+Somente nomes **conhecidos** de estilo/cor são interpretados. Todo o resto fica literal:
+
+```python
+eprint("Acesse https://exemplo.com/pagina")   # URL intacta
+eprint("//erro/texto/erro")                    # tratado como texto puro
+```
+
+---
+
+## Referência da API
+
+### Funções principais
+
+| Função | Descrição |
+| --- | --- |
+| `fmt(texto, *, color=None)` | Retorna string formatada (ANSI ou limpa) |
+| `eprint(*values, sep=" ", end="\n", file=None, color=None, flush=False)` | `print` colorido |
+| `einput(prompt="", *, color=None)` | `input` colorido |
+| `preview(file=None)` | Imprime todos os estilos e cores disponíveis |
+
+**Parâmetro `color`:** `None` = detecta terminal · `True` = força ANSI · `False` = texto limpo
+
+### Atalhos de cor
+
+`black` · `red` · `green` · `yellow` · `blue` · `magenta` · `cyan` · `white`
+
+### Atalhos de estilo
+
+`bold` · `dim` · `italic` · `underline` · `strike` · `style(nome, texto)`
+
+Todos aceitam `color=None|True|False` e podem ser encadeados:
+
+```python
+from easyansi import bold, red
+print(bold(red("crítico")))
+```
+
+### Mensagens de status
+
+```python
+from easyansi import success, error, warning, info
+
+success("Deploy concluído")
+error("Falha ao conectar")
+warning("Cache desatualizado")
+info("Rodando na porta 8000")
+```
+
+Os símbolos usam fallback ASCII (`[OK]`, `[ERRO]`) quando o terminal não suporta Unicode.
+
+---
+
+## Logging colorido
+
+Integração com o módulo `logging` padrão do Python. Níveis são coloridos no terminal; a saída permanece limpa em arquivos e com `NO_COLOR`.
+
+```python
+import logging
+from easyansi.logging import ColorFormatter, setup_logging
+
+# Opção 1 — plugar no setup existente
+handler = logging.StreamHandler()
+handler.setFormatter(ColorFormatter())
+logging.root.addHandler(handler)
+logging.info("Servidor iniciado")
+
+# Opção 2 — configuração em uma linha
+setup_logging(level=logging.INFO)
+logging.warning("Cache desatualizado")
+logging.error("Falha ao conectar")
+```
+
+**Cores padrão por nível:**
+
+| Nível | Estilo |
+| --- | --- |
+| DEBUG | `dim` |
+| INFO | `cyan` |
+| WARNING | `yellow` |
+| ERROR | `red` |
+| CRITICAL | `bold-red` |
+
+**Marcacao EasyAnsi nas mensagens de log:**
+
+```python
+setup_logging(markup=True, force=True)
+logging.info("//green/Deploy concluído/green")
+```
+
+**Parâmetros do `ColorFormatter`:** `fmt`, `datefmt`, `color`, `markup`, `level_colors`, `stream`
+
+---
+
+## Referência de estilos e cores
+
+### Estilos de texto
+
+| Inglês | Português | Tag |
+| --- | --- | --- |
+| Bold | Negrito | `bold` / `negrito` |
+| Dim | Fraco | `dim` / `fraco` |
+| Italic | Itálico | `italic` / `italico` |
+| Underline | Sublinhado | `underline` / `sublinhado` |
+| Strikethrough | Tachado | `strike` / `tachado` |
+
+### Cores nomeadas
+
+| Inglês | Português | Tag |
+| --- | --- | --- |
+| Black | Preto | `black` / `preto` |
+| Red | Vermelho | `red` / `vermelho` |
+| Green | Verde | `green` / `verde` |
+| Yellow | Amarelo | `yellow` / `amarelo` |
+| Blue | Azul | `blue` / `azul` |
+| Magenta | Rosa | `magenta` / `rosa` |
+| Cyan | Ciano | `cyan` / `ciano` |
+| White | Branco | `white` / `branco` |
+
+### Variações
+
+- **Brilhante:** `bright-red`, `claro-vermelho`
+- **Fundo:** `bg-blue`, `fundo-azul`
+- **Cor real:** `#ff8800`, `bg-#222222`
+
+### Descubra tudo no terminal
+
+```python
+import easyansi
+easyansi.preview()
+```
+
+---
+
+## Comportamento inteligente da saída
+
+A EasyAnsi segue convenções da comunidade e se comporta corretamente em qualquer ambiente:
+
+| Condição | Comportamento |
+| --- | --- |
+| Terminal interativo (TTY) | Cores ANSI aplicadas |
+| Saída em pipe / redirecionada | Texto limpo (sem escape codes) |
+| Variável `NO_COLOR` definida | Texto limpo ([no-color.org](https://no-color.org/)) |
+| Variável `FORCE_COLOR` definida | Cores forçadas |
+| `TERM=dumb` | Texto limpo |
+| Windows 10+ | Modo VT habilitado no import |
+
+Controle manual:
+
+```python
+fmt("//red/erro/red", color=True)   # sempre colorido
+fmt("//red/erro/red", color=False)  # sempre limpo
+```
+
+---
+
+## Arquitetura
+
+Design modular com baixo acoplamento — cada módulo tem uma responsabilidade única:
+
+```
+string → parser.parse → tokens → renderer.render → saída
+                  ↑                      ↑
+              codes.py            terminal.py (TTY / NO_COLOR)
+```
+
+| Módulo | Papel |
+| --- | --- |
+| `codes.py` | Tabelas ANSI e resolução de nomes |
+| `parser.py` | Tokenização da marcacao (pilha, aninhamento, escape) |
+| `renderer.py` | Token → string ANSI (ou texto limpo) |
+| `terminal.py` | Detecção de ambiente, VT no Windows |
+| `api.py` | `fmt`, `eprint`, `einput` |
+| `shortcuts.py` | Atalhos de cor/estilo e mensagens de status |
+| `logging.py` | `ColorFormatter`, `setup_logging` |
+| `preview.py` | Descoberta visual da paleta |
+
+---
+
+## Desenvolvimento
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+Executar testes com layout src:
+
+```bash
+PYTHONPATH=src pytest
+```
+
+---
+
+## Contribuindo
+
+Contribuições são bem-vindas:
+
+1. Faça fork do repositório
+2. Crie uma branch de feature
+3. Adicione testes para o novo comportamento
+4. Garanta que `pytest` passe
+5. Abra um pull request
+
+---
+
+## Roadmap
+
+- [ ] Temas de acessibilidade (paletas de alto contraste)
+- [ ] Backends de exportação HTML / PDF
+- [ ] Tracebacks coloridos no logging
+
+---
+
+## Licença
+
+MIT — veja [LICENSE](../LICENSE).
+
+---
+
+<p align="center">
+  Feita com cuidado para devs que querem cor no terminal de forma prática — comandos fáceis, zero overhead.
+</p>
