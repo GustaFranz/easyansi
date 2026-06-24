@@ -93,6 +93,8 @@ eprint(f"Score: //bold-blue/{score}/bold-blue")
 
 # One-word shortcuts
 print(red("error"), green("ok"), bold("title"))
+print(bold(red("critical")))                  # chain shortcuts
+print("//bg-yellow/warning on yellow/bg-yellow")  # with activate()
 
 # Status lines (ready to go)
 success("Saved")
@@ -203,26 +205,26 @@ message = fmt("//yellow/warning/yellow")
 
 ### Combine styles and colors
 
-Use `-` to stack attributes:
+Use `-` to stack attributes (examples assume `easyansi.activate()` was called):
 
 ```python
-eprint("//bold-blue/header/bold-blue")
-eprint("//italic-underline-magenta/highlight/italic-underline-magenta")
-eprint("//bg-yellow/black text on yellow/bg-yellow")
-eprint("//#ff8800/exact orange/#ff8800")
+print("//bold-blue/header/bold-blue")
+print("//italic-underline-magenta/highlight/italic-underline-magenta")
+print("//bg-yellow/black text on yellow/bg-yellow")
+print("//#ff8800/exact orange/#ff8800")
 ```
 
 ### Works inside f-strings
 
 ```python
 value = 42
-eprint(f"Result: //green/{value}/green points")
+print(f"Result: //green/{value}/green points")
 ```
 
 ### Escape literal slashes
 
 ```python
-eprint(r"path: \/usr\/local/bin")
+print(r"path: \/usr\/local/bin")
 ```
 
 ### Fail-safe by design
@@ -230,8 +232,36 @@ eprint(r"path: \/usr\/local/bin")
 Only **known** style/color names are interpreted. Everything else stays literal:
 
 ```python
-eprint("Visit https://example.com/page")   # URL untouched
-eprint("//typo/text/typo")                 # treated as plain text
+print("Visit https://example.com/page")   # URL untouched
+print("//typo/text/typo")                 # treated as plain text
+```
+
+---
+
+## Customization Examples
+
+Everyday patterns you can copy and adapt (with `activate()`):
+
+```python
+import easyansi
+easyansi.activate()
+
+# entire line
+print("//green/Saved successfully/green")
+
+# only one word
+score = 10
+print(f"Score: //bold-blue/{score}/bold-blue points")
+
+# style + color combined
+print("//italic-underline-magenta/Important note/italic-underline-magenta")
+
+# background and hex
+print("//bg-yellow/black on yellow/bg-yellow")
+print("//#ff8800/custom orange/#ff8800")
+
+# Portuguese aliases also work
+print("//negrito-vermelho/Error/negrito-vermelho")
 ```
 
 ---
@@ -256,16 +286,28 @@ eprint("//typo/text/typo")                 # treated as plain text
 
 `black` · `red` · `green` · `yellow` · `blue` · `magenta` · `cyan` · `white`
 
+```python
+from easyansi import red, green, yellow, blue, magenta, cyan, white, black
+
+print(red("error"), green("success"), yellow("warning"))
+print(blue("info"), magenta("highlight"), cyan("prompt"), white("plain"))
+print(black("dark text"))
+```
+
 ### Style shortcuts
 
 `bold` · `dim` · `italic` · `underline` · `strike` · `style(name, text)`
 
-All shortcuts accept `color=None|True|False` and can be chained:
-
 ```python
-from easyansi import bold, red
-print(bold(red("critical")))
+from easyansi import bold, dim, italic, underline, strike, style, red
+
+print(bold("title"), dim("secondary"), italic("note"))
+print(underline("link"), strike("removed"))
+print(bold(red("critical")))                 # chain shortcuts
+print(style("bold-blue", "custom combo"))   # any name via style()
 ```
+
+All shortcuts accept `color=None|True|False`.
 
 ### Status messages
 
@@ -319,6 +361,23 @@ setup_logging(markup=True, force=True)
 logging.info("//green/Deploy completed/green")
 ```
 
+**Custom level colors (optional):**
+
+```python
+import logging
+from easyansi.logging import ColorFormatter, setup_logging
+
+handler = logging.StreamHandler()
+handler.setFormatter(ColorFormatter(level_colors={
+    logging.DEBUG: "dim",
+    logging.INFO: "green",
+    logging.WARNING: "yellow",
+    logging.ERROR: "bold-red",
+    logging.CRITICAL: "bold-red",
+}))
+logging.root.addHandler(handler)
+```
+
 **`ColorFormatter` parameters:** `fmt`, `datefmt`, `color`, `markup`, `level_colors`, `stream`
 
 ---
@@ -335,6 +394,11 @@ logging.info("//green/Deploy completed/green")
 | Underline | Sublinhado | `underline` / `sublinhado` |
 | Strikethrough | Tachado | `strike` / `tachado` |
 
+```python
+print("//bold/Bold/bold  //dim/Dim/dim  //italic/Italic/italic")
+print("//underline/Underline/underline  //strike/Strikethrough/strike")
+```
+
 ### Named colors
 
 | English | Portuguese | Tag |
@@ -348,11 +412,32 @@ logging.info("//green/Deploy completed/green")
 | Cyan | Ciano | `cyan` / `ciano` |
 | White | Branco | `white` / `branco` |
 
+```python
+print("//red/red  //green/green  //yellow/yellow  //blue/blue")
+print("//magenta/magenta  //cyan/cyan  //white/white  //black/black")
+```
+
 ### Variants
 
 - **Bright:** `bright-red`, `claro-vermelho`
 - **Background:** `bg-blue`, `fundo-azul`
 - **True color:** `#ff8800`, `bg-#222222`
+
+```python
+print("//bright-red/bright/bright-red")
+print("//bg-blue/blue background/bg-blue")
+print("//bg-#222222/dark panel/bg-#222222")
+print("//#ff8800/exact hex color/#ff8800")
+```
+
+### Portuguese aliases
+
+English tags and Portuguese aliases are interchangeable:
+
+```python
+print("//negrito-vermelho/error/negrito-vermelho")
+print("//fundo-amarelo/warning on yellow/fundo-amarelo")
+```
 
 ### Discover everything in your terminal
 
@@ -379,8 +464,10 @@ EasyAnsi follows community conventions and behaves correctly in all environments
 Manual override:
 
 ```python
+from easyansi import fmt
+
 fmt("//red/error/red", color=True)   # always colored
-fmt("//red/error/red", color=False)  # always plain
+fmt("//red/error/red", color=False)  # always plain — good for files/export
 ```
 
 ---
