@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "easyansi"
 version = "0.5.0"
-description = "Formatacao de strings no terminal com uma sintaxe simples (//cor/.../cor), sem dependencias."
+description = "Terminal string formatting with simple //color/ syntax. Zero dependencies."
 readme = "README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE" }
-authors = [{ name = "Gustavo" }]
+authors = [{ name = "Gustavo", email = "GustaFranz@users.noreply.github.com" }]
 keywords = ["ansi", "color", "terminal", "console", "text", "cli", "colors", "logging"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -27,11 +27,17 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Terminals",
     "Typing :: Typed",
+    "Natural Language :: English",
+    "Natural Language :: Portuguese",
+    "Natural Language :: Spanish",
+    "Natural Language :: Chinese (Simplified)",
 ]
 dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/GustaFranz/easyansi"
+Documentation = "https://github.com/GustaFranz/easyansi#readme"
+Changelog = "https://github.com/GustaFranz/easyansi/releases"
 Repository = "https://github.com/GustaFranz/easyansi"
 Issues = "https://github.com/GustaFranz/easyansi/issues"
 
