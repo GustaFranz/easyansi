@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="../README.md"><img src="https://img.shields.io/badge/lang-English-blue?style=for-the-badge" alt="English"></a>
-  <a href="README.pt.md"><img src="https://img.shields.io/badge/lang-Português-green?style=for-the-badge" alt="Português"></a>
-  <a href="README.es.md"><img src="https://img.shields.io/badge/lang-Español-orange?style=for-the-badge" alt="Español"></a>
-  <a href="README.zh.md"><img src="https://img.shields.io/badge/lang-中文-red?style=for-the-badge" alt="中文"></a>
+  <a href="https://github.com/GustaFranz/easyansi/blob/main/README.md"><img src="https://img.shields.io/badge/lang-English-blue?style=for-the-badge" alt="English"></a>
+  <a href="https://github.com/GustaFranz/easyansi/blob/main/docs/README.pt.md"><img src="https://img.shields.io/badge/lang-Português-green?style=for-the-badge" alt="Português"></a>
+  <a href="https://github.com/GustaFranz/easyansi/blob/main/docs/README.es.md"><img src="https://img.shields.io/badge/lang-Español-orange?style=for-the-badge" alt="Español"></a>
+  <a href="https://github.com/GustaFranz/easyansi/blob/main/docs/README.zh.md"><img src="https://img.shields.io/badge/lang-中文-red?style=for-the-badge" alt="中文"></a>
 </p>
 
 <h1 align="center">EasyAnsi</h1>
@@ -15,7 +15,7 @@
 
 <p align="center">
   <a href="https://pypi.org/project/easyansi/"><img src="https://img.shields.io/pypi/v/easyansi?label=PyPI&color=blue" alt="PyPI 版本"></a>
-  <a href="../LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-green" alt="MIT 许可证"></a>
+  <a href="https://github.com/GustaFranz/easyansi/blob/main/LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-green" alt="MIT 许可证"></a>
   <img src="https://img.shields.io/badge/python-%3E%3D3.8-blue" alt="Python >= 3.8">
   <img src="https://img.shields.io/badge/依赖-零-brightgreen" alt="零依赖">
   <img src="https://img.shields.io/badge/typing-typed-informational" alt="Typed">
@@ -166,7 +166,7 @@ pip install easyansi
 从源码安装：
 
 ```bash
-git clone https://github.com/seu-usuario/easyansi.git
+git clone https://github.com/GustaFranz/easyansi.git
 cd easyansi
 pip install -e ".[dev]"
 ```
@@ -572,7 +572,7 @@ PYTHONPATH=src pytest
 
 ## 许可证
 
-MIT — 见 [LICENSE](../LICENSE)。
+MIT — 见 [LICENSE](https://github.com/GustaFranz/easyansi/blob/main/LICENSE)。
 
 ---
 
