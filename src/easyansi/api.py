@@ -9,11 +9,12 @@ from __future__ import annotations
 
 import builtins
 import sys
-from typing import IO, Any, Optional
+from typing import IO, Any, Optional, Union
 
 from . import terminal
 from .parser import parse
 from .renderer import render
+from .text import AnsiText
 
 _builtin_print = builtins.print
 _builtin_input = builtins.input
@@ -54,21 +55,27 @@ def eprint(
     stream = sys.stdout if file is None else file
     use_color = terminal.supports_color(stream) if color is None else color
     rendered = [
-        render(parse(value), color=use_color) if isinstance(value, str) else str(value)
+        value.render(color=use_color)
+        if isinstance(value, AnsiText)
+        else render(parse(value), color=use_color)
+        if isinstance(value, str)
+        else str(value)
         for value in values
     ]
     _builtin_print(sep.join(rendered), end=end, file=stream, flush=flush)
 
 
-def einput(prompt: str = "", *, color: Optional[bool] = None) -> str:
+def einput(prompt: Union[str, AnsiText] = "", *, color: Optional[bool] = None) -> str:
     """Versao colorida de ``input``: aceita marcacao no texto do prompt.
 
     Args:
-        prompt: texto do prompt, podendo conter tags da EasyAnsi.
+        prompt: texto do prompt (``str`` ou ``AnsiText`` com escopos de estilo).
         color: força ligar/desligar a cor; None decide pelo terminal.
 
     Returns:
         A linha digitada pelo usuario.
     """
     use_color = terminal.supports_color(sys.stdout) if color is None else color
+    if isinstance(prompt, AnsiText):
+        return prompt.read(color=use_color)
     return _builtin_input(render(parse(prompt), color=use_color))
