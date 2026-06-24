@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "easyansi"
-version = "0.4.0"
+version = "0.5.0"
 description = "Formatacao de strings no terminal com uma sintaxe simples (//cor/.../cor), sem dependencias."
 readme = "README.md"
 requires-python = ">=3.8"

@@ -85,7 +85,7 @@ EasyAnsi existe por una razón: **hacer que el color en terminal sea accesible p
 Copia y usa — sin configuración extra:
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, titulo, paint
+from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, title, paint
 
 # Imprimir con color (lo más común)
 eprint("//green/Hola!/green")
@@ -96,7 +96,7 @@ print(ansi("Hola!").easyansi("bold-blue"))
 print(paint("Hola!", "bold-blue"))
 
 # Título decorativo
-print(ansi("REGISTRO DE ALUMNOS").titulo("="))
+print(ansi("REGISTRO DE ALUMNOS").title("="))
 
 # Atajos de una palabra
 print(red("error"), green("ok"), bold("título"))
@@ -135,7 +135,7 @@ setup_logging()          # listo — logging.info() ya sale colorido
 | **Sintaxis simple** | `//color/texto/color` — abre con `//nombre/`, cierra con `/nombre` o `//` |
 | **Color parcial** | Colorea una palabra dentro de la f-string sin envolver toda la línea |
 | **Texto completo** | `ansi("texto").easyansi("bold-blue")` o `paint("texto", "bold-blue")` |
-| **Títulos decorativos** | `titulo("Título", "=")` o `.titulo("=")` con colores de línea y texto |
+| **Títulos decorativos** | `title("Título", "=")` o `.title("=")` con colores de línea y texto |
 | **Estilos + colores** | Combina con `-`: `bold-blue`, `italic-underline-red` |
 | **Colores reales** | Soporte hex: `//#ff8800/naranja/#ff8800` |
 | **Fondos** | `bg-blue`, `bg-#222222` |
@@ -280,7 +280,7 @@ print("//negrito-vermelho/Error/negrito-vermelho")
 Colorea una cadena entera sin tags inline o crea títulos con líneas repetidas.
 
 ```python
-from easyansi import ansi, titulo, paint, perguntar, activate
+from easyansi import ansi, title, paint, ask, activate
 
 activate()
 
@@ -289,18 +289,18 @@ print(ansi("Hola, mundo!").easyansi("bold-blue"))
 print(paint("Hola", "bold-blue"))
 
 # Ámbitos en input: pregunta, respuesta o ambos
-nombre = ansi("¿Cuál es tu nombre?").easyansi("bold-blue", escopo="prompt").read()
-nombre = ansi("¿Cuál es tu nombre?").easyansi("green", escopo="resposta").read()
-nombre = ansi("¿Cuál es tu nombre?").easyansi("bold-blue", escopo="ambos").read()
-nombre = perguntar("¿Cuál es tu nombre?", prompt="bold-blue", resposta="green")
+nombre = ansi("¿Cuál es tu nombre?").easyansi("bold-blue", scope="prompt").read()
+nombre = ansi("¿Cuál es tu nombre?").easyansi("green", scope="answer").read()
+nombre = ansi("¿Cuál es tu nombre?").easyansi("bold-blue", scope="both").read()
+nombre = ask("¿Cuál es tu nombre?", prompt_style="bold-blue", answer_style="green")
 
 # Títulos decorativos
-print(ansi("REGISTRO DE ALUMNOS").titulo("="))
-print(titulo("REGISTRO DE ALUMNOS", "-", estilo_linha="blue", estilo_texto="bold"))
-print(ansi("MENÚ").titulo("~", estilo="bold-blue"))
+print(ansi("REGISTRO DE ALUMNOS").title("="))
+print(title("REGISTRO DE ALUMNOS", "-", line_style="blue", text_style="bold"))
+print(ansi("MENÚ").title("~", style="bold-blue"))
 ```
 
-**Ámbito (`escopo`):** `texto` (predeterminado) · `prompt` / `pergunta` · `resposta` · `ambos`
+**Ámbito (`scope`):** `text` (predeterminado) · `prompt` · `answer` · `both`
 
 **Nota:** el terminal no colorea en tiempo real lo que el usuario escribe. Colorear la respuesta aplica ANSI al **valor devuelto**, visible al imprimirlo después.
 
@@ -320,9 +320,9 @@ print(ansi("MENÚ").titulo("~", estilo="bold-blue"))
 | `einput(prompt="", *, color=None)` | `input` colorido (acepta `str` o `AnsiText`) |
 | `preview(file=None)` | Imprime todos los estilos y colores disponibles |
 | `ansi(texto)` | Wrapper fluido para texto completo y títulos |
-| `titulo(texto, char="=", ...)` | Título decorativo con líneas repetidas |
+| `title(texto, char="=", ...)` | Título decorativo con líneas repetidas |
 | `paint(texto, estilo, *, color=None)` | Aplica estilo al texto completo (texto primero) |
-| `perguntar(texto, *, prompt=None, resposta=None)` | `input` colorido con ámbitos |
+| `ask(texto, *, prompt_style=None, answer_style=None)` | `input` colorido con ámbitos |
 
 **Parámetro `color`:** `None` = detecta terminal · `True` = fuerza ANSI · `False` = texto limpio
 

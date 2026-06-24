@@ -1,7 +1,7 @@
 import io
 
 import easyansi
-from easyansi import ansi, paint, perguntar, titulo
+from easyansi import ansi, ask, paint, title
 
 RESET = "\x1b[0m"
 
@@ -16,8 +16,8 @@ def test_ansi_render_without_color():
     assert out == "Ola"
 
 
-def test_ansi_titulo_render():
-    out = ansi("CADASTRO").titulo("=", largura=10).render(color=False)
+def test_ansi_title_render():
+    out = ansi("CADASTRO").title("=", width=10).render(color=False)
     lines = out.split("\n")
     assert lines[0] == "=" * 10
     assert lines[1] == "CADASTRO".center(10)
@@ -25,7 +25,7 @@ def test_ansi_titulo_render():
 
 def test_ansi_read_prompt_scope(monkeypatch):
     monkeypatch.setattr("easyansi.text._builtin_input", lambda prompt: "Gustavo")
-    out = ansi("Nome?").easyansi("bold-blue", escopo="prompt").read(color=True)
+    out = ansi("Nome?").easyansi("bold-blue", scope="prompt").read(color=True)
     assert out == "Gustavo"
 
 
@@ -37,12 +37,12 @@ def test_ansi_read_answer_scope(monkeypatch):
         return "Gustavo"
 
     monkeypatch.setattr("easyansi.text._builtin_input", fake_input)
-    out = ansi("Nome?").easyansi("green", escopo="resposta").read(color=True)
+    out = ansi("Nome?").easyansi("green", scope="answer").read(color=True)
     assert captured["prompt"] == "Nome?"
     assert out == f"\x1b[32mGustavo{RESET}"
 
 
-def test_ansi_read_ambos_scope(monkeypatch):
+def test_ansi_read_both_scope(monkeypatch):
     captured = {}
 
     def fake_input(prompt):
@@ -50,7 +50,7 @@ def test_ansi_read_ambos_scope(monkeypatch):
         return "Gustavo"
 
     monkeypatch.setattr("easyansi.text._builtin_input", fake_input)
-    out = ansi("Nome?").easyansi("bold-blue", escopo="ambos").read(color=True)
+    out = ansi("Nome?").easyansi("bold-blue", scope="both").read(color=True)
     assert captured["prompt"] == f"\x1b[1;34mNome?{RESET}"
     assert out == f"\x1b[1;34mGustavo{RESET}"
 
@@ -76,13 +76,13 @@ def test_eprint_ansi_text(monkeypatch):
 
 def test_einput_ansi_text(monkeypatch):
     monkeypatch.setattr("easyansi.text._builtin_input", lambda prompt: "Maria")
-    out = easyansi.einput(ansi("Nome?").easyansi("green", escopo="resposta"), color=True)
+    out = easyansi.einput(ansi("Nome?").easyansi("green", scope="answer"), color=True)
     assert out == f"\x1b[32mMaria{RESET}"
 
 
-def test_perguntar_functional(monkeypatch):
+def test_ask_functional(monkeypatch):
     monkeypatch.setattr("easyansi.text._builtin_input", lambda prompt: "Joao")
-    out = perguntar("Idade?", prompt="bold", resposta="cyan", color=True)
+    out = ask("Idade?", prompt_style="bold", answer_style="cyan", color=True)
     assert out == f"\x1b[36mJoao{RESET}"
 
 
@@ -90,8 +90,8 @@ def test_paint_alias():
     assert paint("x", "red", color=True) == f"\x1b[31mx{RESET}"
 
 
-def test_titulo_function():
-    out = titulo("MENU", "-", largura=8, color=False)
+def test_title_function():
+    out = title("MENU", "-", width=8, color=False)
     assert out.split("\n")[0] == "-" * 8
 
 

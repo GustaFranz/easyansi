@@ -10,20 +10,13 @@ import builtins
 from typing import Any, Literal, Optional
 
 from . import terminal
-from .banner import titulo as format_titulo
+from .banner import title as format_title
 from .banner import _apply_style
 from .parser import parse
 from .renderer import render
+from .shortcuts import style
 
-Scope = Literal["texto", "prompt", "pergunta", "resposta", "ambos"]
-
-_SCOPE_ALIASES = {
-    "texto": "texto",
-    "prompt": "prompt",
-    "pergunta": "prompt",
-    "resposta": "resposta",
-    "ambos": "ambos",
-}
+Scope = Literal["text", "prompt", "answer", "both"]
 
 _builtin_input = builtins.input
 
@@ -38,38 +31,37 @@ class AnsiText:
         self._answer_style: Optional[str] = None
         self._banner: Optional[dict[str, Any]] = None
 
-    def easyansi(self, style: str, *, escopo: Scope = "texto") -> AnsiText:
-        """Define estilo ANSI; ``escopo`` controla onde aplica em ``read()``/``print()``."""
-        scope = _SCOPE_ALIASES.get(escopo, "texto")
-        if scope == "texto":
+    def easyansi(self, style: str, *, scope: Scope = "text") -> AnsiText:
+        """Define estilo ANSI; ``scope`` controla onde aplica em ``read()``/``print()``."""
+        if scope == "text":
             self._text_style = style
         elif scope == "prompt":
             self._prompt_style = style
-        elif scope == "resposta":
+        elif scope == "answer":
             self._answer_style = style
-        elif scope == "ambos":
+        elif scope == "both":
             self._prompt_style = style
             self._answer_style = style
         return self
 
-    def titulo(
+    def title(
         self,
         char: str = "=",
         *,
-        largura: Optional[int] = None,
-        alinhar: Literal["centro", "esquerda"] = "centro",
-        estilo: Optional[str] = None,
-        estilo_texto: Optional[str] = None,
-        estilo_linha: Optional[str] = None,
+        width: Optional[int] = None,
+        align: Literal["center", "left"] = "center",
+        style: Optional[str] = None,
+        text_style: Optional[str] = None,
+        line_style: Optional[str] = None,
     ) -> AnsiText:
         """Configura saida como titulo decorativo com linhas repetidas."""
         self._banner = {
             "char": char,
-            "largura": largura,
-            "alinhar": alinhar,
-            "estilo": estilo,
-            "estilo_texto": estilo_texto,
-            "estilo_linha": estilo_linha,
+            "width": width,
+            "align": align,
+            "style": style,
+            "text_style": text_style,
+            "line_style": line_style,
         }
         return self
 
@@ -80,14 +72,14 @@ class AnsiText:
         use_color = terminal.supports_color(sys.stdout) if color is None else color
 
         if self._banner is not None:
-            return format_titulo(
+            return format_title(
                 self._text,
                 self._banner["char"],
-                largura=self._banner["largura"],
-                alinhar=self._banner["alinhar"],
-                estilo=self._banner["estilo"],
-                estilo_texto=self._banner["estilo_texto"],
-                estilo_linha=self._banner["estilo_linha"],
+                width=self._banner["width"],
+                align=self._banner["align"],
+                style=self._banner["style"],
+                text_style=self._banner["text_style"],
+                line_style=self._banner["line_style"],
                 color=use_color,
             )
 
@@ -127,33 +119,30 @@ def ansi(text: str) -> AnsiText:
     return AnsiText(text)
 
 
-def perguntar(
+def ask(
     text: str,
     *,
-    prompt: Optional[str] = None,
-    resposta: Optional[str] = None,
+    prompt_style: Optional[str] = None,
+    answer_style: Optional[str] = None,
     color: Optional[bool] = None,
 ) -> str:
     """Pergunta ao usuario com estilos opcionais no prompt e na resposta.
 
     Args:
         text: texto da pergunta.
-        prompt: estilo do prompt (ex.: ``"bold-blue"``).
-        resposta: estilo aplicado ao valor retornado (ex.: ``"green"``).
+        prompt_style: estilo do prompt (ex.: ``"bold-blue"``).
+        answer_style: estilo aplicado ao valor retornado (ex.: ``"green"``).
         color: força ligar/desligar a cor; None decide pelo terminal.
 
     Returns:
         A linha digitada pelo usuario, opcionalmente com ANSI na resposta.
     """
     wrapper = ansi(text)
-    if prompt:
-        wrapper.easyansi(prompt, escopo="prompt")
-    if resposta:
-        wrapper.easyansi(resposta, escopo="resposta")
+    if prompt_style:
+        wrapper.easyansi(prompt_style, scope="prompt")
+    if answer_style:
+        wrapper.easyansi(answer_style, scope="answer")
     return wrapper.read(color=color)
-
-
-from .shortcuts import style
 
 
 def paint(text: str, style_name: str, *, color: Optional[bool] = None) -> str:
@@ -161,4 +150,4 @@ def paint(text: str, style_name: str, *, color: Optional[bool] = None) -> str:
     return style(style_name, text, color=color)
 
 
-__all__ = ["AnsiText", "ansi", "perguntar", "paint"]
+__all__ = ["AnsiText", "ansi", "ask", "paint"]

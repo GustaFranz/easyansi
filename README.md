@@ -85,7 +85,7 @@ EasyAnsi exists for one reason: **make terminal colors accessible to everyone**,
 Copy and use — no extra setup required:
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, titulo, paint
+from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, title, paint
 
 # Print with color (most common)
 eprint("//green/Hello!/green")
@@ -96,7 +96,7 @@ print(ansi("Hello!").easyansi("bold-blue"))
 print(paint("Hello!", "bold-blue"))
 
 # Decorative title
-print(ansi("STUDENT REGISTRATION").titulo("="))
+print(ansi("STUDENT REGISTRATION").title("="))
 
 # One-word shortcuts
 print(red("error"), green("ok"), bold("title"))
@@ -135,7 +135,7 @@ setup_logging()          # done — logging.info() is now colored
 | **Simple syntax** | `//color/text/color` — open with `//name/`, close with `/name` or `//` |
 | **Partial coloring** | Color one word inside an f-string without wrapping the whole line |
 | **Whole-text styling** | `ansi("text").easyansi("bold-blue")` or `paint("text", "bold-blue")` |
-| **Decorative titles** | `titulo("Title", "=")` or `.titulo("=")` with separate line/text colors |
+| **Decorative titles** | `title("Title", "=")` or `.title("=")` with separate line/text colors |
 | **Styles + colors** | Combine with `-`: `bold-blue`, `italic-underline-red` |
 | **True colors** | Hex support: `//#ff8800/orange/#ff8800` |
 | **Backgrounds** | `bg-blue`, `bg-#222222` |
@@ -280,7 +280,7 @@ print("//negrito-vermelho/Error/negrito-vermelho")
 Color an entire string without inline tags, or build banner titles with repeated characters.
 
 ```python
-from easyansi import ansi, titulo, paint, perguntar, activate
+from easyansi import ansi, title, paint, ask, activate
 
 activate()
 
@@ -289,18 +289,18 @@ print(ansi("Hello, world!").easyansi("bold-blue"))
 print(paint("Hello", "bold-blue"))
 
 # Input scopes: prompt, answer, or both
-nome = ansi("What is your name?").easyansi("bold-blue", escopo="prompt").read()
-nome = ansi("What is your name?").easyansi("green", escopo="resposta").read()
-nome = ansi("What is your name?").easyansi("bold-blue", escopo="ambos").read()
-nome = perguntar("What is your name?", prompt="bold-blue", resposta="green")
+nome = ansi("What is your name?").easyansi("bold-blue", scope="prompt").read()
+nome = ansi("What is your name?").easyansi("green", scope="answer").read()
+nome = ansi("What is your name?").easyansi("bold-blue", scope="both").read()
+nome = ask("What is your name?", prompt_style="bold-blue", answer_style="green")
 
 # Decorative titles
-print(ansi("STUDENT REGISTRATION").titulo("="))
-print(titulo("STUDENT REGISTRATION", "-", estilo_linha="blue", estilo_texto="bold"))
-print(ansi("MENU").titulo("~", estilo="bold-blue"))
+print(ansi("STUDENT REGISTRATION").title("="))
+print(title("STUDENT REGISTRATION", "-", line_style="blue", text_style="bold"))
+print(ansi("MENU").title("~", style="bold-blue"))
 ```
 
-**Scope (`escopo`):** `texto` (default) · `prompt` / `pergunta` · `resposta` · `ambos`
+**Scope (`scope`):** `text` (default) · `prompt` · `answer` · `both`
 
 **Note:** The terminal cannot color keystrokes in real time during `input()`. Coloring the answer applies ANSI to the **returned string**, so it appears colored when you print it later.
 
@@ -320,9 +320,9 @@ print(ansi("MENU").titulo("~", estilo="bold-blue"))
 | `einput(prompt="", *, color=None)` | Colored `input` (accepts `str` or `AnsiText`) |
 | `preview(file=None)` | Prints all available styles and colors |
 | `ansi(text)` | Fluent wrapper for whole-text styling and titles |
-| `titulo(text, char="=", ...)` | Decorative title with repeated lines |
+| `title(text, char="=", ...)` | Decorative title with repeated lines |
 | `paint(text, style, *, color=None)` | Apply style to entire text (text first) |
-| `perguntar(text, *, prompt=None, resposta=None)` | Colored `input` with scope helpers |
+| `ask(text, *, prompt_style=None, answer_style=None)` | Colored `input` with scope helpers |
 
 **`color` parameter:** `None` = auto-detect terminal · `True` = force ANSI · `False` = plain text
 
