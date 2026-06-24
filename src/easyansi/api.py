@@ -7,12 +7,16 @@ apenas orquestra parser, renderer e terminal (baixo acoplamento) e mantem
 
 from __future__ import annotations
 
+import builtins
 import sys
 from typing import IO, Any, Optional
 
 from . import terminal
 from .parser import parse
 from .renderer import render
+
+_builtin_print = builtins.print
+_builtin_input = builtins.input
 
 
 def fmt(text: str, *, color: Optional[bool] = None) -> str:
@@ -53,7 +57,7 @@ def eprint(
         render(parse(value), color=use_color) if isinstance(value, str) else str(value)
         for value in values
     ]
-    print(sep.join(rendered), end=end, file=stream, flush=flush)
+    _builtin_print(sep.join(rendered), end=end, file=stream, flush=flush)
 
 
 def einput(prompt: str = "", *, color: Optional[bool] = None) -> str:
@@ -67,4 +71,4 @@ def einput(prompt: str = "", *, color: Optional[bool] = None) -> str:
         A linha digitada pelo usuario.
     """
     use_color = terminal.supports_color(sys.stdout) if color is None else color
-    return input(render(parse(prompt), color=use_color))
+    return _builtin_input(render(parse(prompt), color=use_color))

@@ -14,6 +14,7 @@ automaticamente ao importar.
 
 from __future__ import annotations
 
+from .activate import activate, deactivate, is_active
 from . import terminal
 from .api import einput, eprint, fmt
 from .preview import preview
@@ -38,12 +39,15 @@ from .shortcuts import (
     yellow,
 )
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "fmt",
     "eprint",
     "einput",
+    "activate",
+    "deactivate",
+    "is_active",
     "preview",
     "style",
     "black",
