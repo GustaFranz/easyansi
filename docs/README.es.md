@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/easyansi/"><img src="https://img.shields.io/pypi/v/easyansi?label=PyPI&color=blue" alt="Versión PyPI"></a>
+  <a href="https://pypi.org/project/py-easyansi/"><img src="https://img.shields.io/pypi/v/py-easyansi?label=PyPI&color=blue" alt="Versión PyPI"></a>
   <a href="https://github.com/GustaFranz/easyansi/blob/main/LICENSE"><img src="https://img.shields.io/badge/licencia-MIT-green" alt="Licencia MIT"></a>
   <img src="https://img.shields.io/badge/python-%3E%3D3.8-blue" alt="Python >= 3.8">
   <img src="https://img.shields.io/badge/dependencias-cero-brightgreen" alt="Cero dependencias">
@@ -160,7 +160,7 @@ setup_logging()          # listo — logging.info() ya sale colorido
 ## Instalación
 
 ```bash
-pip install easyansi
+pip install py-easyansi
 ```
 
 Desde el código fuente:

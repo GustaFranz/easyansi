@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/easyansi/"><img src="https://img.shields.io/pypi/v/easyansi?label=PyPI&color=blue" alt="PyPI version"></a>
+  <a href="https://pypi.org/project/py-easyansi/"><img src="https://img.shields.io/pypi/v/py-easyansi?label=PyPI&color=blue" alt="PyPI version"></a>
   <a href="https://github.com/GustaFranz/easyansi/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License MIT"></a>
   <img src="https://img.shields.io/badge/python-%3E%3D3.8-blue" alt="Python >= 3.8">
   <img src="https://img.shields.io/badge/dependencies-zero-brightgreen" alt="Zero dependencies">
@@ -160,8 +160,10 @@ setup_logging()          # done — logging.info() is now colored
 ## Installation
 
 ```bash
-pip install easyansi
+pip install py-easyansi
 ```
+
+Import in code: `from easyansi import eprint` (PyPI name differs from the module name).
 
 From source:
 
