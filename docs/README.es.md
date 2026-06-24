@@ -386,13 +386,13 @@ logging.root.addHandler(handler)
 
 ### Estilos de texto
 
-| Inglés | Portugués | Etiqueta |
-| --- | --- | --- |
-| Bold | Negrito | `bold` / `negrito` |
-| Dim | Fraco | `dim` / `fraco` |
-| Italic | Itálico | `italic` / `italico` |
-| Underline | Sublinhado | `underline` / `sublinhado` |
-| Strikethrough | Tachado | `strike` / `tachado` |
+| Inglés | Portugués | Etiqueta | Vista previa |
+| --- | --- | --- | --- |
+| Bold | Negrito | `bold` / `negrito` | <b>ejemplo</b> |
+| Dim | Fraco | `dim` / `fraco` | <span style="color:#888">ejemplo</span> |
+| Italic | Itálico | `italic` / `italico` | <i>ejemplo</i> |
+| Underline | Sublinhado | `underline` / `sublinhado` | <u>ejemplo</u> |
+| Strikethrough | Tachado | `strike` / `tachado` | <s>ejemplo</s> |
 
 ```python
 print("//bold/Negrita/bold  //dim/Tenue/dim  //italic/Cursiva/italic")
@@ -401,16 +401,16 @@ print("//underline/Subrayado/underline  //strike/Tachado/strike")
 
 ### Colores nombrados
 
-| Inglés | Portugués | Etiqueta |
-| --- | --- | --- |
-| Black | Preto | `black` / `preto` |
-| Red | Vermelho | `red` / `vermelho` |
-| Green | Verde | `green` / `verde` |
-| Yellow | Amarelo | `yellow` / `amarelo` |
-| Blue | Azul | `blue` / `azul` |
-| Magenta | Rosa | `magenta` / `rosa` |
-| Cyan | Ciano | `cyan` / `ciano` |
-| White | Branco | `white` / `branco` |
+| Inglés | Portugués | Etiqueta | Vista previa |
+| --- | --- | --- | --- |
+| Black | Preto | `black` / `preto` | <span style="background:#1e1e1e;color:#fff;padding:0 6px">████</span> |
+| Red | Vermelho | `red` / `vermelho` | <span style="color:#cd3131">████ rojo</span> |
+| Green | Verde | `green` / `verde` | <span style="color:#13a10e">████ verde</span> |
+| Yellow | Amarelo | `yellow` / `amarelo` | <span style="color:#c19c00">████ amarillo</span> |
+| Blue | Azul | `blue` / `azul` | <span style="color:#0451a5">████ azul</span> |
+| Magenta | Rosa | `magenta` / `rosa` | <span style="color:#bc3fbc">████ magenta</span> |
+| Cyan | Ciano | `cyan` / `ciano` | <span style="color:#059fc0">████ cian</span> |
+| White | Branco | `white` / `branco` | <span style="background:#e8e8e8;color:#333;padding:0 6px;border:1px solid #ccc">████</span> |
 
 ```python
 print("//red/rojo  //green/verde  //yellow/amarillo  //blue/azul")
@@ -419,9 +419,11 @@ print("//magenta/magenta  //cyan/cian  //white/blanco  //black/negro")
 
 ### Variantes
 
-- **Brillante:** `bright-red`, `claro-vermelho`
-- **Fondo:** `bg-blue`, `fundo-azul`
-- **Color real:** `#ff8800`, `bg-#222222`
+| Variante | Etiqueta | Vista previa |
+| --- | --- | --- |
+| Brillante | `bright-red`, `claro-vermelho` | <span style="color:#ff5555">████ brillante</span> |
+| Fondo | `bg-blue`, `fundo-azul` | <span style="background:#0451a5;color:#fff;padding:0 6px"> fondo azul </span> |
+| Color real (hex) | `#ff8800`, `bg-#222222` | <span style="color:#ff8800">████</span> <span style="background:#222;color:#fff;padding:0 6px"> fondo </span> |
 
 ```python
 print("//bright-red/brillante/bright-red")
