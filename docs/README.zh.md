@@ -384,13 +384,13 @@ logging.root.addHandler(handler)
 
 ### 文本样式
 
-| 英语 | 葡萄牙语 | 标签 |
-| --- | --- | --- |
-| Bold | Negrito | `bold` / `negrito` |
-| Dim | Fraco | `dim` / `fraco` |
-| Italic | Itálico | `italic` / `italico` |
-| Underline | Sublinhado | `underline` / `sublinhado` |
-| Strikethrough | Tachado | `strike` / `tachado` |
+| 英语 | 葡萄牙语 | 标签 | 预览 |
+| --- | --- | --- | --- |
+| Bold | Negrito | `bold` / `negrito` | <b>示例</b> |
+| Dim | Fraco | `dim` / `fraco` | <span style="color:#888">示例</span> |
+| Italic | Itálico | `italic` / `italico` | <i>示例</i> |
+| Underline | Sublinhado | `underline` / `sublinhado` | <u>示例</u> |
+| Strikethrough | Tachado | `strike` / `tachado` | <s>示例</s> |
 
 ```python
 print("//bold/粗体/bold  //dim/暗淡/dim  //italic/斜体/italic")
@@ -399,16 +399,16 @@ print("//underline/下划线/underline  //strike/删除线/strike")
 
 ### 命名颜色
 
-| 英语 | 葡萄牙语 | 标签 |
-| --- | --- | --- |
-| Black | Preto | `black` / `preto` |
-| Red | Vermelho | `red` / `vermelho` |
-| Green | Verde | `green` / `verde` |
-| Yellow | Amarelo | `yellow` / `amarelo` |
-| Blue | Azul | `blue` / `azul` |
-| Magenta | Rosa | `magenta` / `rosa` |
-| Cyan | Ciano | `cyan` / `ciano` |
-| White | Branco | `white` / `branco` |
+| 英语 | 葡萄牙语 | 标签 | 预览 |
+| --- | --- | --- | --- |
+| Black | Preto | `black` / `preto` | <span style="background:#1e1e1e;color:#fff;padding:0 6px">████</span> |
+| Red | Vermelho | `red` / `vermelho` | <span style="color:#cd3131">████ 红</span> |
+| Green | Verde | `green` / `verde` | <span style="color:#13a10e">████ 绿</span> |
+| Yellow | Amarelo | `yellow` / `amarelo` | <span style="color:#c19c00">████ 黄</span> |
+| Blue | Azul | `blue` / `azul` | <span style="color:#0451a5">████ 蓝</span> |
+| Magenta | Rosa | `magenta` / `rosa` | <span style="color:#bc3fbc">████ 品红</span> |
+| Cyan | Ciano | `cyan` / `ciano` | <span style="color:#059fc0">████ 青</span> |
+| White | Branco | `white` / `branco` | <span style="background:#e8e8e8;color:#333;padding:0 6px;border:1px solid #ccc">████</span> |
 
 ```python
 print("//red/红  //green/绿  //yellow/黄  //blue/蓝")
@@ -417,9 +417,11 @@ print("//magenta/品红  //cyan/青  //white/白  //black/黑")
 
 ### 变体
 
-- **亮色：** `bright-red`、`claro-vermelho`
-- **背景：** `bg-blue`、`fundo-azul`
-- **真彩色：** `#ff8800`、`bg-#222222`
+| 变体 | 标签 | 预览 |
+| --- | --- | --- |
+| 亮色 | `bright-red`, `claro-vermelho` | <span style="color:#ff5555">████ 亮色</span> |
+| 背景 | `bg-blue`, `fundo-azul` | <span style="background:#0451a5;color:#fff;padding:0 6px"> 蓝色背景 </span> |
+| 真彩色 (hex) | `#ff8800`, `bg-#222222` | <span style="color:#ff8800">████</span> <span style="background:#222;color:#fff;padding:0 6px"> 背景 </span> |
 
 ```python
 print("//bright-red/亮色/bright-red")

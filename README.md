@@ -386,13 +386,13 @@ logging.root.addHandler(handler)
 
 ### Text styles
 
-| English | Portuguese | Tag |
-| --- | --- | --- |
-| Bold | Negrito | `bold` / `negrito` |
-| Dim | Fraco | `dim` / `fraco` |
-| Italic | Itálico | `italic` / `italico` |
-| Underline | Sublinhado | `underline` / `sublinhado` |
-| Strikethrough | Tachado | `strike` / `tachado` |
+| English | Portuguese | Tag | Preview |
+| --- | --- | --- | --- |
+| Bold | Negrito | `bold` / `negrito` | <b>sample</b> |
+| Dim | Fraco | `dim` / `fraco` | <span style="color:#888">sample</span> |
+| Italic | Itálico | `italic` / `italico` | <i>sample</i> |
+| Underline | Sublinhado | `underline` / `sublinhado` | <u>sample</u> |
+| Strikethrough | Tachado | `strike` / `tachado` | <s>sample</s> |
 
 ```python
 print("//bold/Bold/bold  //dim/Dim/dim  //italic/Italic/italic")
@@ -401,16 +401,16 @@ print("//underline/Underline/underline  //strike/Strikethrough/strike")
 
 ### Named colors
 
-| English | Portuguese | Tag |
-| --- | --- | --- |
-| Black | Preto | `black` / `preto` |
-| Red | Vermelho | `red` / `vermelho` |
-| Green | Verde | `green` / `verde` |
-| Yellow | Amarelo | `yellow` / `amarelo` |
-| Blue | Azul | `blue` / `azul` |
-| Magenta | Rosa | `magenta` / `rosa` |
-| Cyan | Ciano | `cyan` / `ciano` |
-| White | Branco | `white` / `branco` |
+| English | Portuguese | Tag | Preview |
+| --- | --- | --- | --- |
+| Black | Preto | `black` / `preto` | <span style="background:#1e1e1e;color:#fff;padding:0 6px">████</span> |
+| Red | Vermelho | `red` / `vermelho` | <span style="color:#cd3131">████ red</span> |
+| Green | Verde | `green` / `verde` | <span style="color:#13a10e">████ green</span> |
+| Yellow | Amarelo | `yellow` / `amarelo` | <span style="color:#c19c00">████ yellow</span> |
+| Blue | Azul | `blue` / `azul` | <span style="color:#0451a5">████ blue</span> |
+| Magenta | Rosa | `magenta` / `rosa` | <span style="color:#bc3fbc">████ magenta</span> |
+| Cyan | Ciano | `cyan` / `ciano` | <span style="color:#059fc0">████ cyan</span> |
+| White | Branco | `white` / `branco` | <span style="background:#e8e8e8;color:#333;padding:0 6px;border:1px solid #ccc">████</span> |
 
 ```python
 print("//red/red  //green/green  //yellow/yellow  //blue/blue")
@@ -419,9 +419,11 @@ print("//magenta/magenta  //cyan/cyan  //white/white  //black/black")
 
 ### Variants
 
-- **Bright:** `bright-red`, `claro-vermelho`
-- **Background:** `bg-blue`, `fundo-azul`
-- **True color:** `#ff8800`, `bg-#222222`
+| Variant | Tag | Preview |
+| --- | --- | --- |
+| Bright | `bright-red`, `claro-vermelho` | <span style="color:#ff5555">████ bright</span> |
+| Background | `bg-blue`, `fundo-azul` | <span style="background:#0451a5;color:#fff;padding:0 6px"> bg blue </span> |
+| True color (hex) | `#ff8800`, `bg-#222222` | <span style="color:#ff8800">████</span> <span style="background:#222;color:#fff;padding:0 6px"> bg </span> |
 
 ```python
 print("//bright-red/bright/bright-red")
