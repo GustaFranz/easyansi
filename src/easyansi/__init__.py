@@ -15,6 +15,7 @@ automaticamente ao importar.
 from __future__ import annotations
 
 from .activate import activate, deactivate, is_active
+from .banner import titulo
 from . import terminal
 from .api import einput, eprint, fmt
 from .preview import preview
@@ -38,8 +39,9 @@ from .shortcuts import (
     white,
     yellow,
 )
+from .text import AnsiText, ansi, paint, perguntar
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "fmt",
@@ -49,6 +51,11 @@ __all__ = [
     "deactivate",
     "is_active",
     "preview",
+    "ansi",
+    "AnsiText",
+    "titulo",
+    "perguntar",
+    "paint",
     "style",
     "black",
     "red",

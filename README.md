@@ -85,11 +85,18 @@ EasyAnsi exists for one reason: **make terminal colors accessible to everyone**,
 Copy and use — no extra setup required:
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold
+from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, titulo, paint
 
 # Print with color (most common)
 eprint("//green/Hello!/green")
 eprint(f"Score: //bold-blue/{score}/bold-blue")
+
+# Whole text at once (no inline tags)
+print(ansi("Hello!").easyansi("bold-blue"))
+print(paint("Hello!", "bold-blue"))
+
+# Decorative title
+print(ansi("STUDENT REGISTRATION").titulo("="))
 
 # One-word shortcuts
 print(red("error"), green("ok"), bold("title"))
@@ -127,6 +134,8 @@ setup_logging()          # done — logging.info() is now colored
 | --- | --- |
 | **Simple syntax** | `//color/text/color` — open with `//name/`, close with `/name` or `//` |
 | **Partial coloring** | Color one word inside an f-string without wrapping the whole line |
+| **Whole-text styling** | `ansi("text").easyansi("bold-blue")` or `paint("text", "bold-blue")` |
+| **Decorative titles** | `titulo("Title", "=")` or `.titulo("=")` with separate line/text colors |
 | **Styles + colors** | Combine with `-`: `bold-blue`, `italic-underline-red` |
 | **True colors** | Hex support: `//#ff8800/orange/#ff8800` |
 | **Backgrounds** | `bg-blue`, `bg-#222222` |
@@ -266,6 +275,37 @@ print("//negrito-vermelho/Error/negrito-vermelho")
 
 ---
 
+## Whole Text & Decorative Titles
+
+Color an entire string without inline tags, or build banner titles with repeated characters.
+
+```python
+from easyansi import ansi, titulo, paint, perguntar, activate
+
+activate()
+
+# Color entire text for print
+print(ansi("Hello, world!").easyansi("bold-blue"))
+print(paint("Hello", "bold-blue"))
+
+# Input scopes: prompt, answer, or both
+nome = ansi("What is your name?").easyansi("bold-blue", escopo="prompt").read()
+nome = ansi("What is your name?").easyansi("green", escopo="resposta").read()
+nome = ansi("What is your name?").easyansi("bold-blue", escopo="ambos").read()
+nome = perguntar("What is your name?", prompt="bold-blue", resposta="green")
+
+# Decorative titles
+print(ansi("STUDENT REGISTRATION").titulo("="))
+print(titulo("STUDENT REGISTRATION", "-", estilo_linha="blue", estilo_texto="bold"))
+print(ansi("MENU").titulo("~", estilo="bold-blue"))
+```
+
+**Scope (`escopo`):** `texto` (default) · `prompt` / `pergunta` · `resposta` · `ambos`
+
+**Note:** The terminal cannot color keystrokes in real time during `input()`. Coloring the answer applies ANSI to the **returned string**, so it appears colored when you print it later.
+
+---
+
 ## API Reference
 
 ### Core functions
@@ -277,8 +317,12 @@ print("//negrito-vermelho/Error/negrito-vermelho")
 | `is_active()` | Returns whether `activate()` is in effect |
 | `fmt(text, *, color=None)` | Returns formatted string (ANSI or plain) |
 | `eprint(*values, sep=" ", end="\n", file=None, color=None, flush=False)` | Colored `print` |
-| `einput(prompt="", *, color=None)` | Colored `input` |
+| `einput(prompt="", *, color=None)` | Colored `input` (accepts `str` or `AnsiText`) |
 | `preview(file=None)` | Prints all available styles and colors |
+| `ansi(text)` | Fluent wrapper for whole-text styling and titles |
+| `titulo(text, char="=", ...)` | Decorative title with repeated lines |
+| `paint(text, style, *, color=None)` | Apply style to entire text (text first) |
+| `perguntar(text, *, prompt=None, resposta=None)` | Colored `input` with scope helpers |
 
 **`color` parameter:** `None` = auto-detect terminal · `True` = force ANSI · `False` = plain text
 

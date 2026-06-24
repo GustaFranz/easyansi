@@ -85,11 +85,18 @@ EasyAnsi 的存在只有一个原因：**让终端着色对所有人都触手可
 复制即用——无需额外配置：
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold
+from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, titulo, paint
 
 # 彩色打印（最常用）
 eprint("//green/你好!/green")
 eprint(f"得分: //bold-blue/{score}/bold-blue")
+
+# 整段文本一次着色（无 inline 标签）
+print(ansi("你好!").easyansi("bold-blue"))
+print(paint("你好!", "bold-blue"))
+
+# 装饰性标题
+print(ansi("学生登记").titulo("="))
 
 # 单词快捷方式
 print(red("错误"), green("成功"), bold("标题"))
@@ -127,6 +134,8 @@ setup_logging()          # 完成 — logging.info() 现已彩色输出
 | --- | --- |
 | **简单语法** | `//color/text/color` — 用 `//name/` 打开，用 `/name` 或 `//` 关闭 |
 | **局部着色** | 在 f-string 中给单个词着色，无需包裹整行 |
+| **整段文本** | `ansi("文本").easyansi("bold-blue")` 或 `paint("文本", "bold-blue")` |
+| **装饰标题** | `titulo("标题", "=")` 或 `.titulo("=")`，可分别设置行与文字颜色 |
 | **样式 + 颜色** | 用 `-` 组合：`bold-blue`、`italic-underline-red` |
 | **真彩色** | 支持 hex：`//#ff8800/橙色/#ff8800` |
 | **背景色** | `bg-blue`、`bg-#222222` |
@@ -266,6 +275,37 @@ print("//negrito-vermelho/错误/negrito-vermelho")
 
 ---
 
+## 整段文本与装饰标题
+
+无需 inline 标签即可给整段字符串上色，或用重复字符生成标题横幅。
+
+```python
+from easyansi import ansi, titulo, paint, perguntar, activate
+
+activate()
+
+# 整段文本用于 print
+print(ansi("你好，世界!").easyansi("bold-blue"))
+print(paint("你好", "bold-blue"))
+
+# input 作用域：问题、回答或两者
+nome = ansi("你叫什么名字?").easyansi("bold-blue", escopo="prompt").read()
+nome = ansi("你叫什么名字?").easyansi("green", escopo="resposta").read()
+nome = ansi("你叫什么名字?").easyansi("bold-blue", escopo="ambos").read()
+nome = perguntar("你叫什么名字?", prompt="bold-blue", resposta="green")
+
+# 装饰标题
+print(ansi("学生登记").titulo("="))
+print(titulo("学生登记", "-", estilo_linha="blue", estilo_texto="bold"))
+print(ansi("菜单").titulo("~", estilo="bold-blue"))
+```
+
+**作用域 (`escopo`)：** `texto`（默认）· `prompt` / `pergunta` · `resposta` · `ambos`
+
+**说明：** 终端无法在 `input()` 输入过程中实时着色。给回答上色是对**返回值**应用 ANSI，之后 `print` 时才会显示颜色。
+
+---
+
 ## API 参考
 
 ### 核心函数
@@ -277,8 +317,12 @@ print("//negrito-vermelho/错误/negrito-vermelho")
 | `is_active()` | 返回 `activate()` 是否已生效 |
 | `fmt(text, *, color=None)` | 返回格式化字符串（ANSI 或纯文本） |
 | `eprint(*values, ...)` | 彩色 `print` |
-| `einput(prompt="", *, color=None)` | 彩色 `input` |
+| `einput(prompt="", *, color=None)` | 彩色 `input`（接受 `str` 或 `AnsiText`） |
 | `preview(file=None)` | 打印所有可用样式和颜色 |
+| `ansi(text)` | 整段文本与标题的流式包装器 |
+| `titulo(text, char="=", ...)` | 带重复行的装饰标题 |
+| `paint(text, style, *, color=None)` | 给整段文本应用样式（文本在前） |
+| `perguntar(text, *, prompt=None, resposta=None)` | 带作用域的彩色 `input` |
 
 **`color` 参数：** `None` = 自动检测 · `True` = 强制 ANSI · `False` = 纯文本
 
