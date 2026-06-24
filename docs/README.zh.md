@@ -387,7 +387,7 @@ logging.root.addHandler(handler)
 | 英语 | 葡萄牙语 | 标签 | 预览 |
 | --- | --- | --- | --- |
 | Bold | Negrito | `bold` / `negrito` | <b>示例</b> |
-| Dim | Fraco | `dim` / `fraco` | <span style="color:#888">示例</span> |
+| Dim | Fraco | `dim` / `fraco` | ![dim](https://placehold.co/15x15/888888/888888.png) 示例 |
 | Italic | Itálico | `italic` / `italico` | <i>示例</i> |
 | Underline | Sublinhado | `underline` / `sublinhado` | <u>示例</u> |
 | Strikethrough | Tachado | `strike` / `tachado` | <s>示例</s> |
@@ -401,14 +401,14 @@ print("//underline/下划线/underline  //strike/删除线/strike")
 
 | 英语 | 葡萄牙语 | 标签 | 预览 |
 | --- | --- | --- | --- |
-| Black | Preto | `black` / `preto` | <span style="background:#1e1e1e;color:#fff;padding:0 6px">████</span> |
-| Red | Vermelho | `red` / `vermelho` | <span style="color:#cd3131">████ 红</span> |
-| Green | Verde | `green` / `verde` | <span style="color:#13a10e">████ 绿</span> |
-| Yellow | Amarelo | `yellow` / `amarelo` | <span style="color:#c19c00">████ 黄</span> |
-| Blue | Azul | `blue` / `azul` | <span style="color:#0451a5">████ 蓝</span> |
-| Magenta | Rosa | `magenta` / `rosa` | <span style="color:#bc3fbc">████ 品红</span> |
-| Cyan | Ciano | `cyan` / `ciano` | <span style="color:#059fc0">████ 青</span> |
-| White | Branco | `white` / `branco` | <span style="background:#e8e8e8;color:#333;padding:0 6px;border:1px solid #ccc">████</span> |
+| Black | Preto | `black` / `preto` | ![black](https://placehold.co/15x15/1e1e1e/1e1e1e.png) 黑 |
+| Red | Vermelho | `red` / `vermelho` | ![red](https://placehold.co/15x15/cd3131/cd3131.png) 红 |
+| Green | Verde | `green` / `verde` | ![green](https://placehold.co/15x15/13a10e/13a10e.png) 绿 |
+| Yellow | Amarelo | `yellow` / `amarelo` | ![yellow](https://placehold.co/15x15/c19c00/c19c00.png) 黄 |
+| Blue | Azul | `blue` / `azul` | ![blue](https://placehold.co/15x15/0451a5/0451a5.png) 蓝 |
+| Magenta | Rosa | `magenta` / `rosa` | ![magenta](https://placehold.co/15x15/bc3fbc/bc3fbc.png) 品红 |
+| Cyan | Ciano | `cyan` / `ciano` | ![cyan](https://placehold.co/15x15/059fc0/059fc0.png) 青 |
+| White | Branco | `white` / `branco` | ![white](https://placehold.co/15x15/e8e8e8/e8e8e8.png) 白 |
 
 ```python
 print("//red/红  //green/绿  //yellow/黄  //blue/蓝")
@@ -419,9 +419,9 @@ print("//magenta/品红  //cyan/青  //white/白  //black/黑")
 
 | 变体 | 标签 | 预览 |
 | --- | --- | --- |
-| 亮色 | `bright-red`, `claro-vermelho` | <span style="color:#ff5555">████ 亮色</span> |
-| 背景 | `bg-blue`, `fundo-azul` | <span style="background:#0451a5;color:#fff;padding:0 6px"> 蓝色背景 </span> |
-| 真彩色 (hex) | `#ff8800`, `bg-#222222` | <span style="color:#ff8800">████</span> <span style="background:#222;color:#fff;padding:0 6px"> 背景 </span> |
+| 亮色 | `bright-red`, `claro-vermelho` | ![bright](https://placehold.co/15x15/ff5555/ff5555.png) 亮色 |
+| 背景 | `bg-blue`, `fundo-azul` | ![bg](https://placehold.co/15x15/0451a5/0451a5.png) 蓝色背景 |
+| 真彩色 (hex) | `#ff8800`, `bg-#222222` | ![hex](https://placehold.co/15x15/ff8800/ff8800.png) `#ff8800` ![bg](https://placehold.co/15x15/222222/222222.png) `bg-#222222` |
 
 ```python
 print("//bright-red/亮色/bright-red")
