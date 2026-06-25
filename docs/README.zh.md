@@ -85,18 +85,14 @@ EasyAnsi 的存在只有一个原因：**让终端着色对所有人都触手可
 复制即用——无需额外配置：
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, title, paint
+from easyansi import eprint, title, t, success, error, warning, info, red, green, bold, paint
 
 # 彩色打印（最常用）
 eprint("//green/你好!/green")
-eprint(f"得分: //bold-blue/{score}/bold-blue")
 
-# 整段文本一次着色（无 inline 标签）
-print(ansi("你好!").easyansi("bold-blue"))
-print(paint("你好!", "bold-blue"))
-
-# 装饰性标题
-print(ansi("学生登记").title("="))
+# 装饰标题（简单）
+print(title("学生登记", "="))
+print(t("菜单", "~", style="bold-blue"))
 
 # 单词快捷方式
 print(red("错误"), green("成功"), bold("标题"))
@@ -135,7 +131,7 @@ setup_logging()          # 完成 — logging.info() 现已彩色输出
 | **简单语法** | `//color/text/color` — 用 `//name/` 打开，用 `/name` 或 `//` 关闭 |
 | **局部着色** | 在 f-string 中给单个词着色，无需包裹整行 |
 | **整段文本** | `ansi("文本").easyansi("bold-blue")` 或 `paint("文本", "bold-blue")` |
-| **装饰标题** | `title("标题", "=")` 或 `.title("=")`，可分别设置行与文字颜色 |
+| **装饰标题** | `print(title("标题", "="))` 或简短 `print(t("标题", "="))` |
 | **样式 + 颜色** | 用 `-` 组合：`bold-blue`、`italic-underline-red` |
 | **真彩色** | 支持 hex：`//#ff8800/橙色/#ff8800` |
 | **背景色** | `bg-blue`、`bg-#222222` |
@@ -188,6 +184,15 @@ name = input("请输入 //cyan/你的名字/cyan: ")
 ```
 
 无需重命名函数。调用 `easyansi.deactivate()` 可恢复原始函数。
+
+**装饰标题（无需 `activate()`）：**
+
+```python
+import easyansi
+
+print(easyansi.title("学生登记", "="))
+print(easyansi.t("菜单", "~"))
+```
 
 **备选 — 显式使用 `eprint` / `einput`：**
 
@@ -295,9 +300,9 @@ nome = ansi("你叫什么名字?").easyansi("bold-blue", scope="both").read()
 nome = ask("你叫什么名字?", prompt_style="bold-blue", answer_style="green")
 
 # 装饰标题
-print(ansi("学生登记").title("="))
+print(title("学生登记", "="))
 print(title("学生登记", "-", line_style="blue", text_style="bold"))
-print(ansi("菜单").title("~", style="bold-blue"))
+print(t("菜单", "~", style="bold-blue"))
 ```
 
 **作用域 (`scope`)：** `text`（默认）· `prompt` · `answer` · `both`
@@ -321,6 +326,7 @@ print(ansi("菜单").title("~", style="bold-blue"))
 | `preview(file=None)` | 打印所有可用样式和颜色 |
 | `ansi(text)` | 整段文本与标题的流式包装器 |
 | `title(text, char="=", ...)` | 带重复行的装饰标题 |
+| `t(text, char="=", ...)` | `title()` 的简短别名 |
 | `paint(text, style, *, color=None)` | 给整段文本应用样式（文本在前） |
 | `ask(text, *, prompt_style=None, answer_style=None)` | 带作用域的彩色 `input` |
 

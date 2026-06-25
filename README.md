@@ -85,18 +85,14 @@ EasyAnsi exists for one reason: **make terminal colors accessible to everyone**,
 Copy and use — no extra setup required:
 
 ```python
-from easyansi import eprint, einput, fmt, success, error, warning, info, red, green, bold, ansi, title, paint
+from easyansi import eprint, title, t, success, error, warning, info, red, green, bold, paint
 
 # Print with color (most common)
 eprint("//green/Hello!/green")
-eprint(f"Score: //bold-blue/{score}/bold-blue")
 
-# Whole text at once (no inline tags)
-print(ansi("Hello!").easyansi("bold-blue"))
-print(paint("Hello!", "bold-blue"))
-
-# Decorative title
-print(ansi("STUDENT REGISTRATION").title("="))
+# Decorative title (simple)
+print(title("STUDENT REGISTRATION", "="))
+print(t("MENU", "~", style="bold-blue"))
 
 # One-word shortcuts
 print(red("error"), green("ok"), bold("title"))
@@ -135,7 +131,7 @@ setup_logging()          # done — logging.info() is now colored
 | **Simple syntax** | `//color/text/color` — open with `//name/`, close with `/name` or `//` |
 | **Partial coloring** | Color one word inside an f-string without wrapping the whole line |
 | **Whole-text styling** | `ansi("text").easyansi("bold-blue")` or `paint("text", "bold-blue")` |
-| **Decorative titles** | `title("Title", "=")` or `.title("=")` with separate line/text colors |
+| **Decorative titles** | `print(title("Title", "="))` or short `print(t("Title", "="))` |
 | **Styles + colors** | Combine with `-`: `bold-blue`, `italic-underline-red` |
 | **True colors** | Hex support: `//#ff8800/orange/#ff8800` |
 | **Backgrounds** | `bg-blue`, `bg-#222222` |
@@ -190,6 +186,16 @@ name = input("Enter //cyan/your name/cyan: ")
 ```
 
 No need to rename functions. Call `easyansi.deactivate()` to restore the originals.
+
+**Decorative title (no `activate()` needed):**
+
+```python
+import easyansi
+
+print(easyansi.title("STUDENT REGISTRATION", "="))
+# or the short form:
+print(easyansi.t("MENU", "~"))
+```
 
 **Alternative — explicit `eprint` / `einput`:**
 
@@ -297,9 +303,9 @@ nome = ansi("What is your name?").easyansi("bold-blue", scope="both").read()
 nome = ask("What is your name?", prompt_style="bold-blue", answer_style="green")
 
 # Decorative titles
-print(ansi("STUDENT REGISTRATION").title("="))
+print(title("STUDENT REGISTRATION", "="))
 print(title("STUDENT REGISTRATION", "-", line_style="blue", text_style="bold"))
-print(ansi("MENU").title("~", style="bold-blue"))
+print(t("MENU", "~", style="bold-blue"))
 ```
 
 **Scope (`scope`):** `text` (default) · `prompt` · `answer` · `both`
@@ -323,6 +329,7 @@ print(ansi("MENU").title("~", style="bold-blue"))
 | `preview(file=None)` | Prints all available styles and colors |
 | `ansi(text)` | Fluent wrapper for whole-text styling and titles |
 | `title(text, char="=", ...)` | Decorative title with repeated lines |
+| `t(text, char="=", ...)` | Short alias for `title()` |
 | `paint(text, style, *, color=None)` | Apply style to entire text (text first) |
 | `ask(text, *, prompt_style=None, answer_style=None)` | Colored `input` with scope helpers |
 
