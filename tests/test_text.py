@@ -95,6 +95,13 @@ def test_title_function():
     assert out.split("\n")[0] == "-" * 8
 
 
+def test_t_is_title_alias():
+    import easyansi
+
+    assert easyansi.t is easyansi.title
+    assert easyansi.t("X", "=", width=5, color=False) == title("X", "=", width=5, color=False)
+
+
 def test_ansi_print_method(monkeypatch):
     buffer = io.StringIO()
     monkeypatch.setattr("sys.stdout", buffer)

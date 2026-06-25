@@ -3,6 +3,16 @@
 All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.1] - 2026-06-24
+
+### Added
+
+- Short alias `t()` for `title()` — simpler decorative titles
+
+### Changed
+
+- Docs now recommend `print(title("Text", "="))` as the primary title pattern
+
 ## [0.5.0] - 2026-06-24
 
 ### Changed

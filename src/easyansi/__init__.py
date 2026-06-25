@@ -6,6 +6,7 @@ Sintaxe basica::
 
     eprint("//bold-blue/Ola, mundo!/bold-blue")
     eprint("Sobrou //red/1/red item")
+    print(title("CADASTRO", "="))
 
 Tambem ha atalhos diretos (red, green, bold, ...) e mensagens prontas
 (success, error, warning, info). O processamento ANSI no Windows e habilitado
@@ -41,7 +42,9 @@ from .shortcuts import (
 )
 from .text import AnsiText, ansi, ask, paint
 
-__version__ = "0.5.0"
+t = title
+
+__version__ = "0.5.1"
 
 __all__ = [
     "fmt",
@@ -54,6 +57,7 @@ __all__ = [
     "ansi",
     "AnsiText",
     "title",
+    "t",
     "ask",
     "paint",
     "style",
