@@ -19,3 +19,7 @@ env/
 # Editores
 .vscode/
 .idea/
+
+# Config local Cursor / hooks Git (nao versionar)
+.cursor/
+.githooks/
